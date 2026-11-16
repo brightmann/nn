@@ -200,6 +200,7 @@ const nextConfig = {
   },
   output: getOutput(),
   staticPageGenerationTimeout: getStaticPageGenerationTimeoutSec(),
+  ...(isExport() ? { basePath: process.env.NEXT_PUBLIC_BASE_PATH || '/nn', assetPrefix: process.env.NEXT_PUBLIC_BASE_PATH || '/nn' } : {}),
 
   // 性能优化配置
   compress: true,
@@ -225,6 +226,7 @@ const nextConfig = {
       locales: locales
     },
   images: {
+    ...(isExport() ? { unoptimized: true } : {}),
     // 图片压缩和格式优化
     formats: ['image/avif', 'image/webp'],
     // 图片尺寸优化
